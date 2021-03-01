@@ -1,4 +1,6 @@
-# Git command
+# Git commands
 git add . of git add bestandnaam
 
-git commit -m "message" daarna git push -u origin main
+git commit -m "message" 
+
+git push -u origin main
