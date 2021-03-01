@@ -1,6 +1,9 @@
 # Git commands
-git add . of git add bestandnaam
 
-git commit -m "message" 
+`git pull`
 
-git push -u origin main
+`git checkout branchname`
+
+`git add .` of `git add bestandnaam`
+
+`git commit -m "message"` daarna `git push -u origin main`
