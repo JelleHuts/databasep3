@@ -1,5 +1,5 @@
 <?php
-    include('../core/db_connect.php');
+    include($_SERVER['DOCUMENT_ROOT'].'/databasep3/webdev-base-webshop-main/core/db_connect.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,3 +10,4 @@
     <title>Admin Panel - Webshop</title>
 </head>
 <body>
+<h1>Dit is het CMS deel van de shop</h1>
