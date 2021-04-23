@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 15 mrt 2021 om 12:13
+-- Gegenereerd op: 23 apr 2021 om 12:32
 -- Serverversie: 10.4.16-MariaDB
 -- PHP-versie: 7.4.12
 
@@ -50,7 +50,7 @@ INSERT INTO `admin_user` (`admin_user_id`, `email`, `password`, `password_token`
 --
 
 CREATE TABLE `category` (
-  `cagegory_id` int(11) UNSIGNED NOT NULL,
+  `category_id` int(11) UNSIGNED NOT NULL,
   `name` varchar(60) NOT NULL,
   `description` varchar(400) NOT NULL,
   `active` tinyint(1) NOT NULL
@@ -60,11 +60,35 @@ CREATE TABLE `category` (
 -- Gegevens worden geëxporteerd voor tabel `category`
 --
 
-INSERT INTO `category` (`cagegory_id`, `name`, `description`, `active`) VALUES
+INSERT INTO `category` (`category_id`, `name`, `description`, `active`) VALUES
 (1, 'tafellamp', 'Tafellampen zijn binnenlampen voor op tafel.', 1),
 (2, 'buitenlamp', 'Buitenlammpen zijn lampen voor buiten.', 1),
 (3, 'designlampen', 'Designlampen zijn binnenlampen en buitenlampen met een mooi design.', 1),
 (4, 'bureaulamp', 'Bureaulampen zijn binnenlampen voor op uw bureau.', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `customer`
+--
+
+CREATE TABLE `customer` (
+  `customer_id` int(11) UNSIGNED NOT NULL,
+  `gender` int(11) NOT NULL,
+  `first_name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `middle_name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `last_name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `street` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `house_number` int(4) NOT NULL,
+  `house_number_addon` varchar(3) CHARACTER SET utf8 NOT NULL,
+  `zip_code` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `city` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `phone` int(12) NOT NULL,
+  `emailadres` varchar(320) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `newsletter_subscription` int(1) NOT NULL,
+  `date_added` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -142,7 +166,13 @@ ALTER TABLE `admin_user`
 -- Indexen voor tabel `category`
 --
 ALTER TABLE `category`
-  ADD PRIMARY KEY (`cagegory_id`);
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexen voor tabel `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`customer_id`);
 
 --
 -- Indexen voor tabel `product`
@@ -170,7 +200,13 @@ ALTER TABLE `admin_user`
 -- AUTO_INCREMENT voor een tabel `category`
 --
 ALTER TABLE `category`
-  MODIFY `cagegory_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `category_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT voor een tabel `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `customer_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT voor een tabel `product`
