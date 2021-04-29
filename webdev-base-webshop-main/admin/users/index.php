@@ -3,7 +3,7 @@
     // onderstaand bestand wordt ingeladen
     include('../core/header.php');
     include('../core/checklogin_admin.php');
-    include('users-menu.php');
+    include('user-menu.php');
 ?>
 
 <h1>Gebruikersoverzicht</h1>

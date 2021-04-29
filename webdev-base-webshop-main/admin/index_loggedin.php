@@ -19,6 +19,7 @@ if ( isset($_GET['logout'])  && $_GET['logout'] == '1') {
     <li><a href="users/">Gebruikers</a></li>
     <li><a href="orders/">Bestellingen</a></li>
     <li><a href="products/">Producten</a></li>
+    <li><a href="category/">Categoriën</a></li>
 </ul>
 <?php
     include('core/footer.php');

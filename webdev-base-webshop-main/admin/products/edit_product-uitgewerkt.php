@@ -3,47 +3,40 @@
     // onderstaand bestand wordt ingeladen
     include('../core/header.php');
     include('../core/checklogin_admin.php');
-    include('products-menu.php');
-
 ?>
-
-<h1>Product verwijderen</h1>
 
 <?php
 //prettyDump($_POST);
     if (isset($_POST['submit']) && $_POST['submit'] != '') {
         //default user: test@test.nl
         //default password: test123
-        $id = $con->real_escape_string($_POST['id']);
-        $query1 = $con->prepare("DELETE FROM product WHERE product_id = ? LIMIT 1;");
+        $id = $con->real_escape_string($_POST['product_id']);
+        $name = $con->real_escape_string($_POST['name']);
+        $description = $con->real_escape_string($_POST['description']);
+        $query1 = $con->prepare("UPDATE product SET name = ?, description = ? WHERE product_id = ? LIMIT 1;");
         if ($query1 === false) {
             echo mysqli_error($con);
         }
                     
-        $query1->bind_param('i',$id);
+        $query1->bind_param('ssi',$name,$description,$id);
         if ($query1->execute() === false) {
             echo mysqli_error($con);
         } else {
-            echo '<div style="border: 2px solid red">Product met product_id '.$id.' verwijderd!</div>';
+            echo '<div style="border: 2px solid red">Product aangepast</div>';
         }
         $query1->close();
                     
     }
 ?>
 
+<h1>product bewerken</h1>
+
 
 <?php
     if (isset($_GET['id']) && $_GET['id'] != '') {
-
-        ?>
-        <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
-
-        <h2 style="color: red">weet je zeker dat je deze gebruiker wilt verwijderen?</h2><?php
-
         $id = $con->real_escape_string($_GET['id']);
 
         $liqry = $con->prepare("SELECT product_id, product.name, product.description, category.name, price, color, weight, product.active FROM product INNER JOIN category ON product.category_id = category.category_id WHERE product_id = ? LIMIT 1;");
-
         if($liqry === false) {
            echo mysqli_error($con);
         } else{
@@ -53,28 +46,31 @@
                 $liqry->store_result();
                 $liqry->fetch();
                 if($liqry->num_rows == '1'){
-                    echo '$product_id: ' . $product_id . '<br>';
-                    echo '<input type="hidden" name="id" value="' . $id . '" />';
-                    echo '$name: ' . $name . '<br>';
-                    echo '$description: ' . $description . '<br>';
-                    echo '$category_id: ' . $category_id . '<br>';
-                    echo '$price: ' . $price . '<br>';
-                    echo '$color: ' . $color . '<br>';
-                    echo '$weight: ' . $weight . '<br>';
-                    echo '$active: ' . $active . '<br>';
+                    // echo 'product_id: <input type="text" name="product_id" value="' . $product_id . '" ><br>';
+                    // echo 'name: <input type="text" name="name" value="' . $name . '"><br>';
+                    // echo 'description: <input type="text" name="description" value="' . $description . '"><br>';
+
+                    $columns = array('product_id', 'name', 'description', 'category_id', 'price', 'color', 'weight', 'active');
+                    foreach ($columns as $key) {
+                        $dit_veld_moet_alleen_lezen_zijn = "";
+                        if ($key == 'product_id') {
+                            $dit_veld_moet_alleen_lezen_zijn = "readonly";
+                        }
+                        echo '<b>' . $key .'</b> :<input type="text" name="'.$key.'" value="' . $$key . '" '.$dit_veld_moet_alleen_lezen_zijn.'><br>';
+                    }
+
+
                 }
             }
         }
         $liqry->close();
 
-        ?>
-        <br>
-        <input type="submit" name="submit" value="Ja, verwijderen!">
-        </form>
-        <?php
-
     }
 ?>
+<br>
+<input type="submit" name="submit" value="Opslaan">
+</form>
+
 
 <?php
     include('../core/footer.php');

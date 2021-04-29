@@ -1,15 +1,14 @@
 <?php
-    
     // onderstaand bestand wordt ingeladen
     include('../core/header.php');
     include('../core/checklogin_admin.php');
-    include('products-menu.php');
+    include('category-menu.php');
 ?>
 
 <h1>Productenoverzicht</h1>
 
 <?php
-        $liqry = $con->prepare("SELECT product_id, product.name, product.description, category.name, price, color, weight, product.active FROM product INNER JOIN category ON product.category_id = category.category_id");
+        $liqry = $con->prepare("SELECT category_id, name, description, active FROM category");
         
         // met join
         // echo '<div class="warning">met join</div>';
@@ -17,7 +16,7 @@
         // INNER JOIN category ON product.category_id = category.category_id 
         //");
         
-        $columns = array('product_id', 'name', 'description', 'category_id', 'price', 'color', 'weight', 'active');
+        $columns = array('category_id', 'name', 'description', 'active');
 
         // $columns = array('product_id', 'name', 'description', 'category_id', 'price', 'color', 'weight', 'active');
         // $liqry = $con->prepare("SELECT " . implode(", ", $columns) ." FROM product");
@@ -26,7 +25,7 @@
         if($liqry === false) {
            echo mysqli_error($con);
         } else{
-            $liqry->bind_result( $product_id, $name, $description, $category_id, $price, $color, $weight, $active);
+            $liqry->bind_result( $category_id, $name, $description, $active);
             if($liqry->execute()){
                 $liqry->store_result();
                 // while($liqry->fetch()) {
@@ -77,8 +76,8 @@
 
 }
                     ?>
-                        <td><a href="edit_product.php?id=<?php echo $product_id; ?>">edit</a></td>
-                        <td><a href="delete_product.php?id=<?php echo $product_id; ?>">delete</a></td>
+                        <td><a href="edit_category.php?id=<?php echo $category_id; ?>">edit</a></td>
+                        <td><a href="delete_category.php?id=<?php echo $category_id; ?>">delete</a></td>
                     </tr>
                     <?php
 
