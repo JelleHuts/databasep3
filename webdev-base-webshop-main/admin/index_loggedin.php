@@ -4,7 +4,7 @@
 ?>
 <h1>Welkom gebruiker <?php echo $_SESSION['Sadmin_id']; ?></h1>
 - <a href="logout.php">uitloggen</a> <br>
-- <a href="?logout=1">uitloggen met codde in indexloggenind</a> <br>
+<!-- - <a href="?logout=1">uitloggen met codde in indexloggenind</a> <br> -->
 
 <?php
 if ( isset($_GET['logout'])  && $_GET['logout'] == '1') {
@@ -17,9 +17,10 @@ if ( isset($_GET['logout'])  && $_GET['logout'] == '1') {
 
 <ul>
     <li><a href="users/">Gebruikers</a></li>
-    <li><a href="orders/">Bestellingen</a></li>
+    <!-- <li><a href="orders/">Bestellingen</a></li> -->
     <li><a href="products/">Producten</a></li>
     <li><a href="category/">Categoriën</a></li>
+    <li><a href="customer/">Customers</a></li>
 </ul>
 <?php
     include('core/footer.php');

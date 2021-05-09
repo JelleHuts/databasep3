@@ -1,10 +1,3 @@
-
-
-
-<!-- WERKT NOG NIET! -->
-
-
-
 <?php
     
     // onderstaand bestand wordt ingeladen
