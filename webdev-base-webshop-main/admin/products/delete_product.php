@@ -38,7 +38,7 @@
         ?>
         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
 
-        <h2 style="color: red">weet je zeker dat je deze gebruiker wilt verwijderen?</h2><?php
+        <h2 style="color: red">weet je zeker dat je dit product wilt verwijderen?</h2><?php
 
         $id = $con->real_escape_string($_GET['id']);
 
